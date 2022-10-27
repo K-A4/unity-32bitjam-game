@@ -5,7 +5,7 @@ using UnityEngine;
 public class CameraMovement : MonoBehaviour
 {
     public Transform trackTransform;
-    public Transform PlayerTransform;
+    //public Transform PlayerTransform;
     public float LerpSpeed;
     public float MoveSpeed;
     public float Distance;
@@ -18,8 +18,8 @@ public class CameraMovement : MonoBehaviour
 
     private void Start()
     {
-        PlayerTransform = GameObject.FindGameObjectWithTag("Player").transform;
-        Distance = (PlayerTransform.position - transform.position).magnitude;
+        //PlayerTransform = GameObject.FindGameObjectWithTag("Player").transform;
+        //Distance = (PlayerTransform.position - transform.position).magnitude;
         previousRotation = transform.rotation;
         Cursor.lockState =  CursorLockMode.Locked;
     }
@@ -39,10 +39,10 @@ public class CameraMovement : MonoBehaviour
         {
             mouseDelta += joyDelta;
         }
-        var rot = Quaternion.LookRotation(PlayerTransform.position - transform.position, Vector3.up);
-        var playerF = PlayerTransform.forward;
-        var delta = ((PlayerTransform.rotation * Quaternion.Inverse(previousRotation)).eulerAngles.y);
-        delta = delta < 180.0f ? delta : delta - 360.0f;
+        ////var rot = Quaternion.LookRotation(PlayerTransform.position - transform.position, Vector3.up);
+        ////var playerF = PlayerTransform.forward;
+        ////var delta = ((PlayerTransform.rotation * Quaternion.Inverse(previousRotation)).eulerAngles.y);
+        ////delta = delta < 180.0f ? delta : delta - 360.0f;
 
         Xangle += mouseDelta.x;
         
@@ -55,7 +55,7 @@ public class CameraMovement : MonoBehaviour
         //transform.rotation = Quaternion.Lerp(transform.rotation, rot, Time.deltaTime * LerpSpeed / 10.0f);
         //transform.rotation = Quaternion.Lerp(transform.rotation, rot, Time.deltaTime * LerpSpeed / 2.0f);
         // Quaternion.Lerp(transform.rotation, Quaternion.Euler(0, rotToPlayer.eulerAngles.y, 0) * transform.rotation,  LerpSpeed * Time.deltaTime);
-        var toCamera = transform.position - PlayerTransform.position;
+        ////var toCamera = transform.position - PlayerTransform.position;
         var deltaRot = transform.rotation * Quaternion.Inverse(previousRotation);
         //angle += deltaRot.eulerAngles.y;
         //print(deltaRot);

@@ -12,13 +12,13 @@ public class Hittable : MonoBehaviour
     
     public ParticleSystem Particles { get { return hitParticles; } set { hitParticles = value; } }
 
-    protected Animator animator;
+    [SerializeField] protected Animator animator;
 
     [SerializeField] protected float health;
     [SerializeField] protected ParticleSystem hitParticles;
     [SerializeField] protected GameObject corpseItem;
     [SerializeField] protected AudioSource hitSound;
-
+    
     public virtual void GetHit(float damage, Vector3 pos)
     {
         OnGetHit?.Invoke(Mathf.RoundToInt(health));
@@ -46,26 +46,35 @@ public class Hittable : MonoBehaviour
 
     public virtual void Die(Vector3 pos)
     {
-        if (gameObject.layer == LayerMask.NameToLayer("Corpse"))
-        {
-            //hitParticles.transform.SetParent(null);
-            //var ps = hitParticles.main;
-            //ps.stopAction = ParticleSystemStopAction.Destroy;
-            if (corpseItem)
-            {
-                Instantiate(corpseItem, transform.position , Quaternion.identity);
-            }
-            OnDie?.Invoke();
-            Destroy(gameObject);
-        }
+        //if (gameObject.layer == LayerMask.NameToLayer("Corpse"))
+        //{
+        //    //hitParticles.transform.SetParent(null);
+        //    //var ps = hitParticles.main;
+        //    //ps.stopAction = ParticleSystemStopAction.Destroy;
+        //    if (corpseItem)
+        //    {
+        //        Instantiate(corpseItem, transform.position , Quaternion.identity);
+        //    }
+        //    OnDie?.Invoke();
+        //    Destroy(gameObject);
+        //}
+        OnDie?.Invoke();
+        Destroy(gameObject);
         PlayHitParticles(pos);
-        gameObject.layer = LayerMask.NameToLayer("Corpse");
         animator?.SetTrigger("Die");
     }
 
     private void OnDestroy()
     {
         if (!gameObject.scene.isLoaded) return;
+        if (hitParticles)
+        {
+            CreateParticle();
+        }
+    }
+    
+    private void CreateParticle()
+    {
         var particles = Instantiate(hitParticles, transform.position, Quaternion.identity);
         var hitsound = particles.gameObject.AddComponent<AudioSource>();
         hitsound.clip = hitSound.clip;
