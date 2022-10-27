@@ -138,7 +138,10 @@ public class AttackPlayer : MonoBehaviour
 
         if (CurrentAttack != null)
         {
-            Gizmos.DrawSphere(CurrentAttack.HitTransform.position, 0.25f);
+            if (CurrentAttack.HitTransform)
+            {
+                Gizmos.DrawSphere(CurrentAttack.HitTransform.position, 0.25f);
+            }
         }
     }
 }

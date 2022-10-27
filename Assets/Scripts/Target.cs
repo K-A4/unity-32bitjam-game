@@ -6,6 +6,7 @@ public class Target : MonoBehaviour
 {
     [HideInInspector] public float Angle;
     private Transform enemyTransform;
+
     public void SetEnemy(Transform enemy)
     {
         enemyTransform = enemy;
