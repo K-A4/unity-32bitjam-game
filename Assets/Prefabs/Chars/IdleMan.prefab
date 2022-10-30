@@ -10453,7 +10453,6 @@ MonoBehaviour:
   stanceRadius: 2.5
   chaseRadius: 5
   moveOnStart: 0
-  LayDuration: 0
 --- !u!114 &4471903620161702862
 MonoBehaviour:
   m_ObjectHideFlags: 0

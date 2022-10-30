@@ -10,7 +10,10 @@ public class CameraMovement : MonoBehaviour
     public float MoveSpeed;
     public float Distance;
     //[SerializeField] private float Speed;
-    private Vector3 prevPos;
+    [SerializeField] private float minDistance = 0;
+    [SerializeField] private float maxDistance = 4;
+    [SerializeField] private float YminAngle = 27;
+    [SerializeField] private float YmaxAngle = 72;
     private float Yangle = 0;
     private float Xangle = 0;
     private Quaternion previousRotation;
@@ -44,6 +47,7 @@ public class CameraMovement : MonoBehaviour
         var mouseDelta = new Vector2(Input.GetAxisRaw("Mouse X"), Input.GetAxisRaw("Mouse Y"));
         var joyDelta = new Vector2(Input.GetAxisRaw("AxisX"), Input.GetAxisRaw("AxisY"));
         Distance -= Input.GetAxisRaw("Mouse ScrollWheel") * 10;
+        Distance = Mathf.Clamp(Distance, minDistance, maxDistance);
         if (mouseDelta == Vector2.zero)
         {
             mouseDelta += joyDelta;
@@ -56,7 +60,7 @@ public class CameraMovement : MonoBehaviour
         Xangle += mouseDelta.x;
 
         Yangle -= mouseDelta.y;
-        Yangle = Mathf.Clamp(Yangle, 30, 90);
+        Yangle = Mathf.Clamp(Yangle, YminAngle, YmaxAngle);
         var rotDelta = Quaternion.Euler(Yangle, Xangle, 0);
         //rotDelta = rotDelta * rot;
         //var rotToPlayer = PlayerTransform.rotation * Quaternion.Inverse(transform.rotation);

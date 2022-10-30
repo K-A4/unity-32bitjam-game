@@ -1330,7 +1330,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mover: {fileID: 9193223222565634692}
-  animator: {fileID: 8310700426559186357}
+  animator: {fileID: 0}
   AttackMask:
     serializedVersion: 2
     m_Bits: 379
@@ -1338,14 +1338,14 @@ MonoBehaviour:
   - CoolDown: 0.5
     AttackAnimation: {fileID: 1617509824179927875, guid: 70c12bedac93a144b9957730a70c110a, type: 3}
     HitStunTime: 0.5
-    HitTransform: {fileID: 6135478818010514419}
+    HitTransform: {fileID: 0}
     KnockPower: 2
     KnockDistance: 0.2
     Hard: 0
   - CoolDown: 0.5
     AttackAnimation: {fileID: -3103203806459014567, guid: 70c12bedac93a144b9957730a70c110a, type: 3}
     HitStunTime: 0.5
-    HitTransform: {fileID: 7401952572738297921}
+    HitTransform: {fileID: 0}
     KnockPower: 2
     KnockDistance: 0.2
     Hard: 0
@@ -1358,7 +1358,7 @@ MonoBehaviour:
     KnockPower: 0
     KnockDistance: 0
     Hard: 0
-  cc: {fileID: 6739949078212710650}
+  cc: {fileID: 0}
 --- !u!114 &6739949078212710650
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1379,7 +1379,7 @@ MonoBehaviour:
     - CoolDown: 0.3
       AttackAnimation: {fileID: -750408830459504989, guid: 70c12bedac93a144b9957730a70c110a, type: 3}
       HitStunTime: 1
-      HitTransform: {fileID: 3891003678404486041}
+      HitTransform: {fileID: 0}
       KnockPower: 1.5
       KnockDistance: 0.5
       Hard: 0
@@ -1389,18 +1389,52 @@ MonoBehaviour:
     - CoolDown: 0.3
       AttackAnimation: {fileID: -750408830459504989, guid: 70c12bedac93a144b9957730a70c110a, type: 3}
       HitStunTime: 1
-      HitTransform: {fileID: 3891003678404486041}
+      HitTransform: {fileID: 0}
       KnockPower: 2
       KnockDistance: 0.2
       Hard: 0
     - CoolDown: 0.3
       AttackAnimation: {fileID: -856778234595731204, guid: 70c12bedac93a144b9957730a70c110a, type: 3}
       HitStunTime: 1
-      HitTransform: {fileID: 6675816378610491133}
+      HitTransform: {fileID: 0}
       KnockPower: 2
       KnockDistance: 0.5
       Hard: 1
-  inputTime: 0.2
+  - ComboInputs: 000
+    firstAttackDuration: 0
+    Animations:
+    - CoolDown: 0.4
+      AttackAnimation: {fileID: 1617509824179927875, guid: 70c12bedac93a144b9957730a70c110a, type: 3}
+      HitStunTime: 1
+      HitTransform: {fileID: 0}
+      KnockPower: 2
+      KnockDistance: 0.2
+      Hard: 0
+    - CoolDown: 0.4
+      AttackAnimation: {fileID: 449168841492232661, guid: 70c12bedac93a144b9957730a70c110a, type: 3}
+      HitStunTime: 1
+      HitTransform: {fileID: 0}
+      KnockPower: 2
+      KnockDistance: 0.7
+      Hard: 1
+  - ComboInputs: 01
+    firstAttackDuration: 0
+    Animations:
+    - CoolDown: 0.4
+      AttackAnimation: {fileID: 1617509824179927875, guid: 70c12bedac93a144b9957730a70c110a, type: 3}
+      HitStunTime: 1
+      HitTransform: {fileID: 0}
+      KnockPower: 2
+      KnockDistance: 0.2
+      Hard: 0
+    - CoolDown: 0.4
+      AttackAnimation: {fileID: 449168841492232661, guid: 70c12bedac93a144b9957730a70c110a, type: 3}
+      HitStunTime: 1
+      HitTransform: {fileID: 0}
+      KnockPower: 2
+      KnockDistance: 0.7
+      Hard: 1
+  inputTime: 0.15
 --- !u!1 &8310700426619017819
 GameObject:
   m_ObjectHideFlags: 0
@@ -1534,6 +1568,10 @@ MonoBehaviour:
   LerpSpeed: 12
   MoveSpeed: 15
   Distance: 3
+  minDistance: 0
+  maxDistance: 4
+  YminAngle: 27
+  YmaxAngle: 72
 --- !u!1 &8310700428166729664
 GameObject:
   m_ObjectHideFlags: 0
@@ -2158,13 +2196,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 50496e9e4f4d9bd429777d66a79c90ec, type: 3}
---- !u!4 &4486641708677336707 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 8949564117274863600, guid: 50496e9e4f4d9bd429777d66a79c90ec, type: 3}
-  m_PrefabInstance: {fileID: 4787605650738391411}
-  m_PrefabAsset: {fileID: 0}
 --- !u!198 &1288064705404571463 stripped
 ParticleSystem:
   m_CorrespondingSourceObject: {fileID: 6021556790518457908, guid: 50496e9e4f4d9bd429777d66a79c90ec, type: 3}
+  m_PrefabInstance: {fileID: 4787605650738391411}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &4486641708677336707 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8949564117274863600, guid: 50496e9e4f4d9bd429777d66a79c90ec, type: 3}
   m_PrefabInstance: {fileID: 4787605650738391411}
   m_PrefabAsset: {fileID: 0}

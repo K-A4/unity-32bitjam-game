@@ -15,6 +15,8 @@ public class Targeting : MonoBehaviour
     private void Update()
     {
         UpdateTargeting();
+        PlayerMover.SetTarget(currentTarget ? currentTarget.transform : null);
+
     }
 
     private void UpdateTargeting()
@@ -26,7 +28,7 @@ public class Targeting : MonoBehaviour
         {
             if (enem[i].TryGetComponent(out Target target))
             {
-                if (currentTarget == null)
+                if (currentTarget != target || currentTarget == null)
                 {
                     currentTarget = target;
                 }
@@ -41,10 +43,6 @@ public class Targeting : MonoBehaviour
             currentTarget = null;
         }
 
-        if (currentTarget)
-        {
-            PlayerMover.SetTarget(currentTarget.transform);
-        }
 
         targetList.Sort((a, b) => a.Angle > b.Angle ? 1 : 0);
 

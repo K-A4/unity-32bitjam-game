@@ -21,7 +21,6 @@ public class Enemy : Entity
     [SerializeField] private float stanceRadius;
     [SerializeField] private float chaseRadius;
     [SerializeField] private bool moveOnStart;
-    [SerializeField] private float LayDuration;
     private float LayTime;
     private bool canMove;
     private bool laying;
@@ -74,7 +73,7 @@ public class Enemy : Entity
     {
         Anim.SetTrigger("GetHit");
     }
-
+    float ydelta;
     private void Update()
     {
         switch (state)
@@ -90,8 +89,8 @@ public class Enemy : Entity
         {
             Anim.SetBool("Lay", false);
         }
-
-        distanceToTarget = Vector3.Distance(transform.position, player.position);
+        ydelta = (player.position.y - transform.position.y);
+        distanceToTarget = Vector3.Distance(transform.position, player.position) * (ydelta < -3.0f ? 100.0f : 1.0f);
         if (Agent)
         {
             Agent.SetDestination(player.position);

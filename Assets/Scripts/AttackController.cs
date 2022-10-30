@@ -105,9 +105,9 @@ public class AttackController : MonoBehaviour
             {
                 var attcker = item.transform.GetComponentInChildren<AttackController>();
                 attcker.mover.SetLaying(CurrentAttack.Hard, CurrentAttack.HitStunTime);
+                hittable.GetHit(1.0f, CurrentAttack.HitTransform.position);
                 attcker.SetAttackCooldown(CurrentAttack.HitStunTime);
                 StartCoroutine(KnockBackCoroutine(attcker.mover.transform, CurrentAttack.KnockPower, CurrentAttack.KnockDistance));
-                hittable.GetHit(1.0f, CurrentAttack.HitTransform.position);
                 color = Color.red;
                 //return;
             }

@@ -22,8 +22,8 @@ Shader "Unlit/SH_Unlit"
             #pragma vertex vert
             #pragma fragment frag
             // make fog work
-            #pragma multi_compile multi_compile_fog LIGHTMAP_ON LIGHTMAP_OFF
-            //#pragma multi_compile_fog
+            //#pragma multi_compile LIGHTMAP_ON LIGHTMAP_OFF
+            #pragma multi_compile_fog
 
             #include "UnityCG.cginc"
 
@@ -57,7 +57,8 @@ Shader "Unlit/SH_Unlit"
                 o.vertex = (floor(o.vertex * _Scale) / _Scale * _Affine) + ((1 - _Affine) * o.vertex);
                 float2 uvTransformed = TRANSFORM_TEX(v.uv, _MainTex);
                 o.uv = uvTransformed * (o.vertex.w) * _Affine + ((1 - _Affine) * uvTransformed);
-                UNITY_TRANSFER_FOG(o,o.vertex);
+                UNITY_TRANSFER_FOG(o, o.vertex);
+
                 return o;
             }
 
@@ -66,6 +67,7 @@ Shader "Unlit/SH_Unlit"
 
                 float2 uv = _Affine * (i.uv / i.vertex.w) + ((1 - _Affine) * i.uv);
                 fixed4 col = tex2D(_MainTex, uv) * _Color;
+                clip(col.a - 0.5f);
 #ifdef LIGHTMAP_ON
                 col.rgb *= (DecodeLightmap(UNITY_SAMPLE_TEX2D(unity_Lightmap, i.uv[1]))) * _Power;
 #endif
