@@ -19945,7 +19945,7 @@ Projector:
   m_Material: {fileID: 2100000, guid: e30ff3588e719f34bbf0c66f22d97487, type: 2}
   m_IgnoreLayers:
     serializedVersion: 2
-    m_Bits: 8
+    m_Bits: 392
 --- !u!1 &7107252964015553798
 GameObject:
   m_ObjectHideFlags: 0
@@ -20697,20 +20697,27 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   Attacks:
-  - CoolDown: 1
+  - CoolDown: 0.6
     AttackAnimation: {fileID: 1617509824179927875, guid: 70c12bedac93a144b9957730a70c110a, type: 3}
     HitStunTime: 0
     HitTransform: {fileID: 7107252963207712313}
     KnockPower: 0
     KnockDistance: 0
     Hard: 0
-  - CoolDown: 1
+  - CoolDown: 0.6
     AttackAnimation: {fileID: 5225678720304848818, guid: 70c12bedac93a144b9957730a70c110a, type: 3}
     HitStunTime: 0
     HitTransform: {fileID: 7107252963207712313}
     KnockPower: 0
     KnockDistance: 0
-    Hard: 1
+    Hard: 0
+  - CoolDown: 0.6
+    AttackAnimation: {fileID: 449168841492232661, guid: 70c12bedac93a144b9957730a70c110a, type: 3}
+    HitStunTime: 0
+    HitTransform: {fileID: 7107252963207712313}
+    KnockPower: 0
+    KnockDistance: 0
+    Hard: 0
   AnimatorOverrideController: {fileID: 0}
   CurrentAttack:
     CoolDown: 0

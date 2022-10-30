@@ -10468,6 +10468,9 @@ MonoBehaviour:
   OnGetHit:
     m_PersistentCalls:
       m_Calls: []
+  OnHealthChange:
+    m_PersistentCalls:
+      m_Calls: []
   OnDie:
     m_PersistentCalls:
       m_Calls:
@@ -10521,6 +10524,7 @@ MonoBehaviour:
         m_CallState: 2
   animator: {fileID: 4471903619552748905}
   health: 100
+  maxHealth: 100
   hitParticles: {fileID: 3598227551224501067}
   corpseItem: {fileID: 0}
   hitSound: {fileID: 0}

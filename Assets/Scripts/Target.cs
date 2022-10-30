@@ -5,6 +5,7 @@ using UnityEngine;
 public class Target : MonoBehaviour
 {
     [HideInInspector] public float Angle;
+    [HideInInspector] public float Distance;
     private Transform enemyTransform;
 
     public void SetEnemy(Transform enemy)
@@ -18,6 +19,7 @@ public class Target : MonoBehaviour
         {
             Vector3 targetDir = transform.position - enemyTransform.position;
             Angle = Vector3.SignedAngle(enemyTransform.forward, targetDir, Vector3.up);
+            Distance = targetDir.magnitude;
         }
     }
 }

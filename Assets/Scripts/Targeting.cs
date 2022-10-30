@@ -44,24 +44,24 @@ public class Targeting : MonoBehaviour
         }
 
 
-        targetList.Sort((a, b) => a.Angle > b.Angle ? 1 : 0);
+        //targetList.Sort((a, b) => a.Angle > b.Angle ? 1 : 0);
+        targetList.Sort((a, b) => a.Distance > b.Distance ? 1 : 0);
 
-        targetIndex = Mathf.Clamp(targetIndex, 0, Mathf.Max(0, enem.Length - 1));
+        //targetIndex = Mathf.Clamp(targetIndex, 0, Mathf.Max(0, enem.Length - 1));
+        currentTarget = targetList[0];
+        //if (Input.GetButtonDown("TargetLeft"))
+        //{
+        //    var index = targetList.IndexOf(currentTarget);
+        //    index = index - 1 < 0 ? targetList.Count - 1 : --index;
+        //    currentTarget = targetList[index];
+        //}
 
-        if (Input.GetButtonDown("TargetLeft"))
-        {
-            var index = targetList.IndexOf(currentTarget);
-            index = index - 1 < 0 ? targetList.Count - 1 : --index;
-            currentTarget = targetList[index];
-        }
-
-        if (Input.GetButtonDown("TargetRight"))
-        {
-            var index = targetList.IndexOf(currentTarget);
-            index = index + 1 > targetList.Count - 1 ? 0 : ++index;
-            currentTarget = targetList[index];
-        }
-
+        //if (Input.GetButtonDown("TargetRight"))
+        //{
+        //    var index = targetList.IndexOf(currentTarget);
+        //    index = index + 1 > targetList.Count - 1 ? 0 : ++index;
+        //    currentTarget = targetList[index];
+        //}
     }
 
     private void OnDrawGizmos()

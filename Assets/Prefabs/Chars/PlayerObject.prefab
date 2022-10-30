@@ -1330,24 +1330,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mover: {fileID: 9193223222565634692}
-  animator: {fileID: 0}
+  animator: {fileID: 8310700426559186357}
   AttackMask:
     serializedVersion: 2
     m_Bits: 379
   Attacks:
-  - CoolDown: 0.5
+  - CoolDown: 0.68
     AttackAnimation: {fileID: 1617509824179927875, guid: 70c12bedac93a144b9957730a70c110a, type: 3}
     HitStunTime: 0.5
-    HitTransform: {fileID: 0}
+    HitTransform: {fileID: 6135478818010514419}
     KnockPower: 2
-    KnockDistance: 0.2
+    KnockDistance: 0.1
     Hard: 0
-  - CoolDown: 0.5
+  - CoolDown: 0.68
     AttackAnimation: {fileID: -3103203806459014567, guid: 70c12bedac93a144b9957730a70c110a, type: 3}
     HitStunTime: 0.5
-    HitTransform: {fileID: 0}
+    HitTransform: {fileID: 7401952572738297921}
     KnockPower: 2
-    KnockDistance: 0.2
+    KnockDistance: 0.1
     Hard: 0
   AnimatorOverrideController: {fileID: 0}
   CurrentAttack:
@@ -1358,7 +1358,7 @@ MonoBehaviour:
     KnockPower: 0
     KnockDistance: 0
     Hard: 0
-  cc: {fileID: 0}
+  cc: {fileID: 6739949078212710650}
 --- !u!114 &6739949078212710650
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1379,9 +1379,9 @@ MonoBehaviour:
     - CoolDown: 0.3
       AttackAnimation: {fileID: -750408830459504989, guid: 70c12bedac93a144b9957730a70c110a, type: 3}
       HitStunTime: 1
-      HitTransform: {fileID: 0}
+      HitTransform: {fileID: 3891003678404486041}
       KnockPower: 1.5
-      KnockDistance: 0.5
+      KnockDistance: 0.2
       Hard: 0
   - ComboInputs: 001
     firstAttackDuration: 0
@@ -1389,14 +1389,14 @@ MonoBehaviour:
     - CoolDown: 0.3
       AttackAnimation: {fileID: -750408830459504989, guid: 70c12bedac93a144b9957730a70c110a, type: 3}
       HitStunTime: 1
-      HitTransform: {fileID: 0}
-      KnockPower: 2
-      KnockDistance: 0.2
+      HitTransform: {fileID: 3891003678404486041}
+      KnockPower: 1
+      KnockDistance: 0
       Hard: 0
     - CoolDown: 0.3
       AttackAnimation: {fileID: -856778234595731204, guid: 70c12bedac93a144b9957730a70c110a, type: 3}
       HitStunTime: 1
-      HitTransform: {fileID: 0}
+      HitTransform: {fileID: 6675816378610491133}
       KnockPower: 2
       KnockDistance: 0.5
       Hard: 1
@@ -1404,37 +1404,30 @@ MonoBehaviour:
     firstAttackDuration: 0
     Animations:
     - CoolDown: 0.4
-      AttackAnimation: {fileID: 1617509824179927875, guid: 70c12bedac93a144b9957730a70c110a, type: 3}
+      AttackAnimation: {fileID: -750408830459504989, guid: 70c12bedac93a144b9957730a70c110a, type: 3}
       HitStunTime: 1
-      HitTransform: {fileID: 0}
-      KnockPower: 2
-      KnockDistance: 0.2
+      HitTransform: {fileID: 3891003678404486041}
+      KnockPower: 0
+      KnockDistance: 0
       Hard: 0
     - CoolDown: 0.4
       AttackAnimation: {fileID: 449168841492232661, guid: 70c12bedac93a144b9957730a70c110a, type: 3}
       HitStunTime: 1
-      HitTransform: {fileID: 0}
+      HitTransform: {fileID: 6135478818010514419}
       KnockPower: 2
       KnockDistance: 0.7
       Hard: 1
-  - ComboInputs: 01
+  - ComboInputs: 010
     firstAttackDuration: 0
     Animations:
     - CoolDown: 0.4
-      AttackAnimation: {fileID: 1617509824179927875, guid: 70c12bedac93a144b9957730a70c110a, type: 3}
-      HitStunTime: 1
-      HitTransform: {fileID: 0}
-      KnockPower: 2
-      KnockDistance: 0.2
-      Hard: 0
-    - CoolDown: 0.4
       AttackAnimation: {fileID: 449168841492232661, guid: 70c12bedac93a144b9957730a70c110a, type: 3}
       HitStunTime: 1
-      HitTransform: {fileID: 0}
+      HitTransform: {fileID: 6135478818010514419}
       KnockPower: 2
       KnockDistance: 0.7
       Hard: 1
-  inputTime: 0.15
+  inputTime: 0.25
 --- !u!1 &8310700426619017819
 GameObject:
   m_ObjectHideFlags: 0
@@ -1985,8 +1978,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   animator: {fileID: 8310700426559186357}
-  health: 20
-  maxHealth: 20
+  health: 50
+  maxHealth: 50
   hitParticles: {fileID: 1288064705404571463}
   corpseItem: {fileID: 0}
   hitSound: {fileID: 0}
@@ -2020,6 +2013,18 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 7408180722100673482}
+    - target: {fileID: 1121420928122349043, guid: cb65a9ae9f457fc44b115839dc745fd6, type: 3}
+      propertyPath: m_Color.b
+      value: 0.74509805
+      objectReference: {fileID: 0}
+    - target: {fileID: 1121420928122349043, guid: cb65a9ae9f457fc44b115839dc745fd6, type: 3}
+      propertyPath: m_Color.g
+      value: 0.27643374
+      objectReference: {fileID: 0}
+    - target: {fileID: 1121420928122349043, guid: cb65a9ae9f457fc44b115839dc745fd6, type: 3}
+      propertyPath: m_Color.r
+      value: 0.08627451
+      objectReference: {fileID: 0}
     - target: {fileID: 6437201340166351672, guid: cb65a9ae9f457fc44b115839dc745fd6, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -2104,6 +2109,38 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7754982628852602809, guid: cb65a9ae9f457fc44b115839dc745fd6, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7916435345986813177, guid: cb65a9ae9f457fc44b115839dc745fd6, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8344791683325085307, guid: cb65a9ae9f457fc44b115839dc745fd6, type: 3}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8344791683325085307, guid: cb65a9ae9f457fc44b115839dc745fd6, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8344791683325085307, guid: cb65a9ae9f457fc44b115839dc745fd6, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8344791683325085307, guid: cb65a9ae9f457fc44b115839dc745fd6, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8344791683325085307, guid: cb65a9ae9f457fc44b115839dc745fd6, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8344791683325085307, guid: cb65a9ae9f457fc44b115839dc745fd6, type: 3}
+      propertyPath: m_FillAmount
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cb65a9ae9f457fc44b115839dc745fd6, type: 3}
 --- !u!224 &5998452166997411867 stripped
@@ -2127,16 +2164,20 @@ PrefabInstance:
       value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 1714831938259982948, guid: 50496e9e4f4d9bd429777d66a79c90ec, type: 3}
+      propertyPath: m_BoundingSphereOverride.w
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1714831938259982948, guid: 50496e9e4f4d9bd429777d66a79c90ec, type: 3}
       propertyPath: m_BoundingSphereOverride.x
-      value: 3.2e-44
+      value: NaN
       objectReference: {fileID: 0}
     - target: {fileID: 1714831938259982948, guid: 50496e9e4f4d9bd429777d66a79c90ec, type: 3}
       propertyPath: m_BoundingSphereOverride.y
-      value: 1
+      value: NaN
       objectReference: {fileID: 0}
     - target: {fileID: 1714831938259982948, guid: 50496e9e4f4d9bd429777d66a79c90ec, type: 3}
       propertyPath: m_BoundingSphereOverride.z
-      value: 1
+      value: NaN
       objectReference: {fileID: 0}
     - target: {fileID: 8706147224924945899, guid: 50496e9e4f4d9bd429777d66a79c90ec, type: 3}
       propertyPath: m_Name
