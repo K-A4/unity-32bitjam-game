@@ -59,9 +59,9 @@ public class Hittable : MonoBehaviour
         //    Destroy(gameObject);
         //}
         OnDie?.Invoke();
-        Destroy(gameObject);
+        //Destroy(gameObject);
         PlayHitParticles(pos);
-        animator?.SetTrigger("Die");
+        animator?.SetTrigger("Lay");
     }
 
     private void OnDestroy()

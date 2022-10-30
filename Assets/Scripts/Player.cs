@@ -4,11 +4,17 @@ using UnityEngine;
 
 public class Player : Entity
 {
-    public AttackPlayer Attacker;
+    public AttackController Attacker;
     public PlayerMovement PlayerMovement;
+
     public override void SetMoving(bool move)
     {
         PlayerMovement.SetMoving(move);
+    }
+
+    public override void SetLaying(bool lay, float layTime)
+    {
+        Attacker.animator.SetBool("Lay", lay);
     }
 
     private void Start()

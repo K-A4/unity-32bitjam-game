@@ -12,23 +12,46 @@ enum EnemyState
 
 public class Enemy : Entity
 {
-    public AttackPlayer EnemyAttacker;
+    public AttackController EnemyAttacker;
     public NavMeshAgent Agent;
     public Animator Anim;
+    public Hittable Hittable;
     [SerializeField] private float speed;
     [SerializeField] private float attackRadius;
     [SerializeField] private float stanceRadius;
     [SerializeField] private float chaseRadius;
+    [SerializeField] private bool moveOnStart;
+    [SerializeField] private float LayDuration;
+    private float LayTime;
+    private bool canMove;
+    private bool laying;
     private float distanceToTarget;
-
     private Transform player;
     private EnemyState state;
     private MovementStates movementState;
 
     public override void SetMoving(bool move)
     {
-        Agent.speed = move ? speed : 0;
-        Agent.isStopped = !move;
+        if (canMove)
+        {
+            if (Agent)
+            {
+                Agent.speed = move ? speed : 0;
+            }
+        }
+    }
+
+    public void SetCanMoving(bool move)
+    {
+        canMove = move;
+    }
+
+    public override void SetLaying(bool lay, float layTime)
+    {
+        Anim.SetBool("Lay", lay);
+        LayTime = Time.time + layTime;
+        SetMoving(!lay);
+        laying = true;
     }
 
     private void Awake()
@@ -39,7 +62,17 @@ public class Enemy : Entity
 
     private void Start()
     {
-        Agent.speed = speed;
+        if (Agent)
+        {
+            Agent.speed = 0;
+        }
+        Hittable.OnGetHit.AddListener(PlayHittAnim);
+        canMove = moveOnStart;
+    }
+
+    private void PlayHittAnim(int d)
+    {
+        Anim.SetTrigger("GetHit");
     }
 
     private void Update()
@@ -52,16 +85,24 @@ public class Enemy : Entity
             default:
                 break;
         }
+
+        if (Time.time > LayTime)
+        {
+            Anim.SetBool("Lay", false);
+        }
+
         distanceToTarget = Vector3.Distance(transform.position, player.position);
-        Agent.SetDestination(player.position);
-        Anim.SetFloat("State", (int)movementState);
-        Anim.SetFloat("Speed", Agent.velocity.magnitude);
+        if (Agent)
+        {
+            Agent.SetDestination(player.position);
+            Anim.SetFloat("State", (int)movementState);
+            Anim.SetFloat("Speed", Agent.velocity.magnitude);
+        }
     }
 
     private void Idleing()
     {
-        Agent.isStopped = true;
-
+        SetMoving(false);
         if (distanceToTarget < chaseRadius)
         {
             state = EnemyState.Chase;
@@ -88,8 +129,10 @@ public class Enemy : Entity
     {
         movementState = MovementStates.Stance;
         transform.rotation = Quaternion.LookRotation((player.position - transform.position).normalized,Vector3.up);
-        Agent.isStopped = false;
-        Agent.speed = 0.5f * Agent.speed;
+        if (Agent)
+        {
+            Agent.speed = 0.5f * Agent.speed;
+        }
         if (distanceToTarget < attackRadius)
         {
             RandomAttack();

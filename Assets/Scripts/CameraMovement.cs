@@ -15,6 +15,7 @@ public class CameraMovement : MonoBehaviour
     private float Xangle = 0;
     private Quaternion previousRotation;
     private Vector3 Pos;
+    public static bool IsCameraMove = true;
 
     private void Start()
     {
@@ -26,13 +27,21 @@ public class CameraMovement : MonoBehaviour
 
     private void Update()
     {
+        if (IsCameraMove)
+        {
+            CmaeraMoving();
+        }
+    }
+
+    private void CmaeraMoving()
+    {
         //var deltaMove = trackTransform.position - prevPos;
         //Pos += deltaMove.normalized * Time.deltaTime * Speed;
         //Pos = Vector3.Lerp(Pos, transform.position, Time.deltaTime * 10);
         //transform.position = Pos + trackTransform.position;
 
         //transform.position = Vector3.Lerp(transform.position, trackTransform.position, Time.deltaTime * LerpSpeed);
-        var mouseDelta = new Vector2(Input.GetAxisRaw("Mouse X") , Input.GetAxisRaw("Mouse Y"));
+        var mouseDelta = new Vector2(Input.GetAxisRaw("Mouse X"), Input.GetAxisRaw("Mouse Y"));
         var joyDelta = new Vector2(Input.GetAxisRaw("AxisX"), Input.GetAxisRaw("AxisY"));
         Distance -= Input.GetAxisRaw("Mouse ScrollWheel") * 10;
         if (mouseDelta == Vector2.zero)
@@ -45,9 +54,9 @@ public class CameraMovement : MonoBehaviour
         ////delta = delta < 180.0f ? delta : delta - 360.0f;
 
         Xangle += mouseDelta.x;
-        
+
         Yangle -= mouseDelta.y;
-        Yangle = Mathf.Clamp(Yangle, 0, 90);
+        Yangle = Mathf.Clamp(Yangle, 30, 90);
         var rotDelta = Quaternion.Euler(Yangle, Xangle, 0);
         //rotDelta = rotDelta * rot;
         //var rotToPlayer = PlayerTransform.rotation * Quaternion.Inverse(transform.rotation);
@@ -60,6 +69,13 @@ public class CameraMovement : MonoBehaviour
         //angle += deltaRot.eulerAngles.y;
         //print(deltaRot);
         transform.position = Vector3.Slerp(transform.position, trackTransform.position - (transform.forward * Distance), MoveSpeed * Time.deltaTime);
+
+        if (Physics.Raycast(trackTransform.position, (transform.position - trackTransform.position).normalized, out RaycastHit hit, Distance))
+        {
+            var dir = (trackTransform.position - transform.position).normalized;
+            transform.position = hit.point/* + (dir * Vector3.Dot(dir, hit.normal))*/;
+        }
+
         //transform.position = PlayerTransform.position + (Quaternion.Euler(0, angle, 0) * toCamera.normalized * Distance);
         previousRotation = transform.rotation;
     }

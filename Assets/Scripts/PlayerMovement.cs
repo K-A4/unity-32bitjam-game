@@ -47,7 +47,10 @@ public class PlayerMovement : MonoBehaviour
         Moving();
 
         anim.SetFloat("State", (int)state);
-        anim.SetFloat("Speed", forwardVec3.magnitude);
+        if (moving)
+        {
+            anim.SetFloat("Speed", forwardVec3.magnitude);
+        }
     }
 
     public void SetState(MovementStates state)

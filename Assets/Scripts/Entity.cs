@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class Entity : MonoBehaviour
 {
-    public virtual void SetMoving(bool move)
-    {
+    public virtual void SetMoving(bool move) { }
 
-    }
+    public virtual void SetLaying(bool lay, float layTime) { }
 }
