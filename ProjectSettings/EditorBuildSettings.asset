@@ -4,5 +4,8 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/32BitJam.unity
+    guid: 90149186080c3a041b303878c22d015f
   m_configObjects: {}

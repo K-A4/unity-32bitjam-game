@@ -16,7 +16,6 @@ public class Targeting : MonoBehaviour
     {
         UpdateTargeting();
         PlayerMover.SetTarget(currentTarget ? currentTarget.transform : null);
-
     }
 
     private void UpdateTargeting()
@@ -28,27 +27,35 @@ public class Targeting : MonoBehaviour
         {
             if (enem[i].TryGetComponent(out Target target))
             {
-                if (currentTarget != target || currentTarget == null)
+                if (target.enabled)
                 {
-                    currentTarget = target;
+                    if (currentTarget != target || currentTarget == null)
+                    {
+                        currentTarget = target;
+                    }
+
+                    target.SetEnemy(transform);
+                    targetList.Add(target);
                 }
-                
-                target.SetEnemy(transform);
-                targetList.Add(target);
             }
         }
+        targetList.Sort((a, b) => a.Distance > b.Distance ? 1 : 0);
 
         if (targetList.Count == 0)
         {
             currentTarget = null;
         }
+        else
+        {
+            currentTarget = targetList[0];
+        }
+
+
 
 
         //targetList.Sort((a, b) => a.Angle > b.Angle ? 1 : 0);
-        targetList.Sort((a, b) => a.Distance > b.Distance ? 1 : 0);
 
         //targetIndex = Mathf.Clamp(targetIndex, 0, Mathf.Max(0, enem.Length - 1));
-        currentTarget = targetList[0];
         //if (Input.GetButtonDown("TargetLeft"))
         //{
         //    var index = targetList.IndexOf(currentTarget);

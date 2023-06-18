@@ -54,10 +54,10 @@ Shader "Unlit/SH_Unlit"
             {
                 v2f o;
                 o.vertex = UnityObjectToClipPos(v.vertex);
-                o.vertex = (floor(o.vertex * _Scale) / _Scale * _Affine) + ((1 - _Affine) * o.vertex);
+                UNITY_TRANSFER_FOG(o, o.vertex);
+                o.vertex = (floor(o.vertex * _Scale) / _Scale );
                 float2 uvTransformed = TRANSFORM_TEX(v.uv, _MainTex);
                 o.uv = uvTransformed * (o.vertex.w) * _Affine + ((1 - _Affine) * uvTransformed);
-                UNITY_TRANSFER_FOG(o, o.vertex);
 
                 return o;
             }

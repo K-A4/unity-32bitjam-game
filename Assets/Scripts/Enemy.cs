@@ -23,11 +23,11 @@ public class Enemy : Entity
     [SerializeField] private bool moveOnStart;
     private float LayTime;
     private bool canMove;
-    private bool laying;
     private float distanceToTarget;
     private Transform player;
     private EnemyState state;
     private MovementStates movementState;
+    private float ydelta;
 
     public override void SetMoving(bool move)
     {
@@ -50,17 +50,12 @@ public class Enemy : Entity
         Anim.SetBool("Lay", lay);
         LayTime = Time.time + layTime;
         SetMoving(!lay);
-        laying = true;
     }
-
-    private void Awake()
+    
+    private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
         state = EnemyState.Idle;
-    }
-
-    private void Start()
-    {
         if (Agent)
         {
             Agent.speed = 0;
@@ -73,8 +68,8 @@ public class Enemy : Entity
     {
         Anim.SetTrigger("GetHit");
     }
-    float ydelta;
-    private void Update()
+
+    private void LateUpdate()
     {
         switch (state)
         {
@@ -85,15 +80,15 @@ public class Enemy : Entity
                 break;
         }
 
-        if (Time.time > LayTime)
+        if (Time.time > LayTime && !Hittable.IsDead)
         {
             Anim.SetBool("Lay", false);
         }
+
         ydelta = (player.position.y - transform.position.y);
         distanceToTarget = Vector3.Distance(transform.position, player.position) * (ydelta < -3.0f ? 100.0f : 1.0f);
         if (Agent)
         {
-            Agent.SetDestination(player.position);
             Anim.SetFloat("State", (int)movementState);
             Anim.SetFloat("Speed", Agent.velocity.magnitude);
         }
@@ -112,6 +107,10 @@ public class Enemy : Entity
     private void Chasing()
     {
         movementState = MovementStates.Normal;
+        if (Agent)
+        {
+            Agent.SetDestination(player.position);
+        }
 
         if (distanceToTarget < stanceRadius)
         {
@@ -127,9 +126,12 @@ public class Enemy : Entity
     private void Fighting()
     {
         movementState = MovementStates.Stance;
-        transform.rotation = Quaternion.LookRotation((player.position - transform.position).normalized,Vector3.up);
+        var lookDir = (player.position - transform.position).normalized;
+        lookDir.y = 0;
+        transform.rotation = Quaternion.LookRotation(lookDir, Vector3.up);
         if (Agent)
         {
+            Agent.SetDestination(player.position);
             Agent.speed = 0.5f * Agent.speed;
         }
         if (distanceToTarget < attackRadius)

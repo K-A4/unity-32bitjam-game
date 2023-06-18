@@ -56,7 +56,7 @@ public class AttackController : MonoBehaviour
     
     private void Update()
     {
-        if (Time.time > coolDownTime /*+ coolDownDuration*/)
+        if (Time.time > coolDownTime)
         {
             mover.SetMoving(true);
             animator.SetBool("Attacking", false);
@@ -104,12 +104,17 @@ public class AttackController : MonoBehaviour
             if (item.transform.TryGetComponent(out Hittable hittable))
             {
                 var attcker = item.transform.GetComponentInChildren<AttackController>();
-                attcker.mover.SetLaying(CurrentAttack.Hard, CurrentAttack.HitStunTime);
+                if (attcker)
+                {
+                    attcker.mover.SetLaying(CurrentAttack.Hard, CurrentAttack.HitStunTime);
+                    attcker.SetAttackCooldown(CurrentAttack.HitStunTime);
+                    if (CurrentAttack.KnockPower != 0)
+                    {
+                        StartCoroutine(KnockBackCoroutine(attcker.mover.transform, CurrentAttack.KnockPower, CurrentAttack.KnockDistance));
+                    }
+                    color = Color.red;
+                }
                 hittable.GetHit(1.0f, CurrentAttack.HitTransform.position);
-                attcker.SetAttackCooldown(CurrentAttack.HitStunTime);
-                StartCoroutine(KnockBackCoroutine(attcker.mover.transform, CurrentAttack.KnockPower, CurrentAttack.KnockDistance));
-                color = Color.red;
-                //return;
             }
         }
     }

@@ -978,7 +978,7 @@ MonoBehaviour:
   Anim: {fileID: 4607050457063078825}
   Hittable: {fileID: 4607050457661543694}
   speed: 4
-  attackRadius: 1.2
+  attackRadius: 0.7
   stanceRadius: 2.98
   chaseRadius: 5
   moveOnStart: 1
@@ -1064,11 +1064,11 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   animator: {fileID: 4607050457063078825}
-  health: 4
-  maxHealth: 4
+  health: 5
+  maxHealth: 5
   hitParticles: {fileID: 3463157859916746123}
   corpseItem: {fileID: 0}
-  hitSound: {fileID: 0}
+  hitSound: {fileID: 5188476384190708502}
 --- !u!54 &4607050457661543692
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1112,6 +1112,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Angle: 0
+  Distance: 0
 --- !u!195 &4607050457661543696
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -1126,7 +1127,7 @@ NavMeshAgent:
   m_Acceleration: 1000
   avoidancePriority: 50
   m_AngularSpeed: 1000
-  m_StoppingDistance: 1.2
+  m_StoppingDistance: 0.5
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
@@ -1360,5 +1361,10 @@ Transform:
 --- !u!198 &3463157859916746123 stripped
 ParticleSystem:
   m_CorrespondingSourceObject: {fileID: 6021556790518457908, guid: 50496e9e4f4d9bd429777d66a79c90ec, type: 3}
+  m_PrefabInstance: {fileID: 7178533600948726719}
+  m_PrefabAsset: {fileID: 0}
+--- !u!82 &5188476384190708502 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 3143070050126237865, guid: 50496e9e4f4d9bd429777d66a79c90ec, type: 3}
   m_PrefabInstance: {fileID: 7178533600948726719}
   m_PrefabAsset: {fileID: 0}

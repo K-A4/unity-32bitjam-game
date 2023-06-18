@@ -21,6 +21,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float speed;
     [SerializeField] private float stanceSpeed;
     [SerializeField] private float JumpForce;
+    [SerializeField] private float stanceDistance;
     private float prevAngle;
     private Vector2 forwardVec;
     private Rigidbody rb;
@@ -62,11 +63,18 @@ public class PlayerMovement : MonoBehaviour
     {
         var inputVec = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")); //new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
 
-        if (Input.GetKeyDown(KeyCode.Tab))
+        //if (Input.GetKeyDown(KeyCode.Tab))
+        //{
+        //    state = (MovementStates)((int)(state + 1) % 2);
+        //}
+        if (target)
         {
-            state = (MovementStates)((int)(state + 1) % 2);
+            if (Vector3.Distance(target.position, transform.position) < stanceDistance)
+            {
+                state = MovementStates.Stance;
+            }
         }
-
+        
         //if (Input.GetKeyDown(KeyCode.Space) && CheckGrounded())
         //{
         //    rb.AddForce(Vector3.up * JumpForce, ForceMode.Impulse);
@@ -107,7 +115,18 @@ public class PlayerMovement : MonoBehaviour
             forward.y = forward.z;
             anim.SetFloat("Right", inputVec.x);
             angle = Mathf.Sign(forward.x) * Vector2.Angle(Vector2.up, forward);
-            forwardVec3 = (transform.right * inputVec.x + transform.forward * inputVec.y).normalized * stanceSpeed;
+            Vector2 camF = new();
+            Vector2 camR = new();
+            if (CameraTransform)
+            {
+                camF = new Vector2(CameraTransform.forward.x, CameraTransform.forward.z);
+                camR = new Vector2(CameraTransform.right.x, CameraTransform.right.z);
+            }
+            forwardVec = camF * inputVec.y + camR * inputVec.x;
+
+            //forwardVec3 = (transform.right * inputVec.x + transform.forward * inputVec.y).normalized * stanceSpeed;
+            forwardVec3 = new Vector3(forwardVec.x, 0, forwardVec.y).normalized * stanceSpeed;
+
         }
     }
 

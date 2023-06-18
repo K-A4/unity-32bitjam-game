@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -20,6 +21,8 @@ public class Hittable : MonoBehaviour
     
     public ParticleSystem Particles { get { return hitParticles; } set { hitParticles = value; } }
 
+    public bool IsDead { get { return health < 0; } private set { } }
+
     [SerializeField] protected Animator animator;
 
     [SerializeField] protected float health;
@@ -40,9 +43,15 @@ public class Hittable : MonoBehaviour
 
         if (hitSound)
         {
-            hitSound.Play();
+            PlayHitSound();
         }
         PlayHitParticles(pos);
+    }
+
+    private void PlayHitSound()
+    {
+        hitSound.clip = AudioManager.Istance.GetRandomSound(0);
+        hitSound.Play();
     }
 
     public void AddHealth(float count)
@@ -74,10 +83,10 @@ public class Hittable : MonoBehaviour
         //    OnDie?.Invoke();
         //    Destroy(gameObject);
         //}
-        OnDie?.Invoke();
         //Destroy(gameObject);
         PlayHitParticles(pos);
-        animator?.SetTrigger("Lay");
+        OnDie?.Invoke();
+        animator.SetBool("Lay", true);
     }
 
     private void OnDestroy()

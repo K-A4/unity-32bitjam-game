@@ -14,10 +14,11 @@ public class CameraMovement : MonoBehaviour
     [SerializeField] private float maxDistance = 4;
     [SerializeField] private float YminAngle = 27;
     [SerializeField] private float YmaxAngle = 72;
+    [SerializeField] private float joystickSensetivity = 2.0f;
+
     private float Yangle = 0;
     private float Xangle = 0;
     private Quaternion previousRotation;
-    private Vector3 Pos;
     public static bool IsCameraMove = true;
 
     private void Start()
@@ -36,6 +37,11 @@ public class CameraMovement : MonoBehaviour
         }
     }
 
+    public void SetLockState(bool state)
+    {
+        Cursor.lockState = state ? CursorLockMode.Locked : CursorLockMode.None;
+    }
+
     private void CmaeraMoving()
     {
         //var deltaMove = trackTransform.position - prevPos;
@@ -45,7 +51,7 @@ public class CameraMovement : MonoBehaviour
 
         //transform.position = Vector3.Lerp(transform.position, trackTransform.position, Time.deltaTime * LerpSpeed);
         var mouseDelta = new Vector2(Input.GetAxisRaw("Mouse X"), Input.GetAxisRaw("Mouse Y"));
-        var joyDelta = new Vector2(Input.GetAxisRaw("AxisX"), Input.GetAxisRaw("AxisY"));
+        var joyDelta = new Vector2(Input.GetAxisRaw("AxisX"), Input.GetAxisRaw("AxisY")) * joystickSensetivity;
         Distance -= Input.GetAxisRaw("Mouse ScrollWheel") * 10;
         Distance = Mathf.Clamp(Distance, minDistance, maxDistance);
         if (mouseDelta == Vector2.zero)
