@@ -8,8 +8,9 @@ You can play this game [here](https://k-aa.itch.io/gakuran). In this game i want
 
 # Assets
 
-all models maded in blender 
-the character design inspired by [mega man legends](https://en.wikipedia.org/wiki/Mega_Man_Legends)
+All models maded in blender.
+
+The character design inspired by [mega man legends](https://en.wikipedia.org/wiki/Mega_Man_Legends)
 
 
 [![coverimage](https://img.itch.zone/aW1nLzEwNDE2NjY4LnBuZw==/original/X6Il%2Br.png "coverimage")](https://k-aa.itch.io/gakuran)
